@@ -46,3 +46,10 @@ def review_detail_view(request, **kwargs):
     review = Review.objects.get(id=kwargs['id'])
     serializer = ReviewSerializer(review)
     return Response(data=serializer.data)
+
+
+@api_view(['GET'])
+def movies_reviews_view(request):
+    movies = Movie.objects.all()
+    serializer = MoviesReviewsSerializer(movies, many=True)
+    return Response(data=serializer.data)
